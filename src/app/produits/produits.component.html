@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr> <th>Id</th><th>Nom</th> <th>Prix</th>  <th>Description</th><th>Catégorie</th> <th>Image</th><th></th> </tr>
+                </thead>
+                <tbody *ngFor="let produit of produits">
+                    <tr>
+                        <td>{{produit.idProduit}}</td>
+                        <td>{{produit.nomProduit}}</td>
+                        <td>{{produit.prixProduit}}</td>
+                        <td>{{produit.description}}</td>
+                        <td>{{produit.categorie?.nomCat}}</td> 
+                        <td><img class="card-img-top img-responsive"
+                            src = "{{produit.imageStr}}"
+                            style="height:50px;width:100px">
+                        </td>
+                        
+                        <td><a *ngIf="authService.isAdmin()"
+                             class="btn btn-danger" (click)="supprimerProduit(produit)">Supprimer</a>
+                        <a *ngIf="authService.isAdmin()"
+                             class="btn btn-success" [routerLink]="['/miseajour-produit',produit.idProduit]">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
